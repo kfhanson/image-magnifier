@@ -1180,11 +1180,11 @@ export default function Home() {
 
   // Update the controls panel to have a class name for targeting and organize colors in two rows
   return (
-    <main className="min-h-screen bg-gray-100 flex items-center justify-center p-4 select-none">
+    <main className="min-h-screen vibrant-mesh-gradient flex items-center justify-center p-4 select-none">
       <div
         ref={containerRef}
         className={`w-full h-screen flex items-center justify-center transition-all duration-200 relative ${
-          isDragging ? "bg-gray-200" : "bg-gray-100"
+          isDragging ? "bg-white/30 backdrop-blur-sm" : "bg-transparent"
         }`}
         onDrop={handleDrop}
         onDragOver={handleDragOver}
