@@ -8,6 +8,7 @@ import { Minus, Plus } from "lucide-react"
 // Add these imports at the top of the file, after the existing imports
 import { Download, Clipboard, X } from "lucide-react"
 import html2canvas from "html2canvas"
+import PixelTrail from "@/fancy/components/background/pixel-trail"
 
 export default function Home() {
   // Add these state variables after the existing state declarations
