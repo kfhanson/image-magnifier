@@ -5,10 +5,8 @@ import type React from "react"
 import { useState, useCallback, useRef, useEffect } from "react"
 import Image from "next/image"
 import { Minus, Plus } from "lucide-react"
-// Add these imports at the top of the file, after the existing imports
 import { Download, Clipboard, X } from "lucide-react"
 import html2canvas from "html2canvas"
-import PixelTrail from "@/fancy/components/background/pixel-trail"
 
 export default function Home() {
   // Add these state variables after the existing state declarations
@@ -1507,7 +1505,9 @@ export default function Home() {
             {magnifier.selected && (
               <>
                 <div
-                  ref={(el) => (resizeHandleRefs.current[0] = el)}
+                  ref={(el) => {
+                    resizeHandleRefs.current[0] = el
+                  }}
                   className={`absolute bg-white border border-blue-500 rounded-sm cursor-nwse-resize z-10 ${
                     isMobile ? "w-6 h-6" : "w-2 h-2"
                   }`}
@@ -1519,7 +1519,9 @@ export default function Home() {
                   onTouchStart={(e) => handleResizeTouchStart(e, "topLeft")}
                 />
                 <div
-                  ref={(el) => (resizeHandleRefs.current[1] = el)}
+                  ref={(el) => {
+                    resizeHandleRefs.current[1] = el
+                  }}
                   className={`absolute bg-white border border-blue-500 rounded-sm cursor-nesw-resize z-10 ${
                     isMobile ? "w-6 h-6" : "w-2 h-2"
                   }`}
@@ -1531,7 +1533,9 @@ export default function Home() {
                   onTouchStart={(e) => handleResizeTouchStart(e, "topRight")}
                 />
                 <div
-                  ref={(el) => (resizeHandleRefs.current[2] = el)}
+                  ref={(el) => {
+                    resizeHandleRefs.current[2] = el
+                  }}
                   className={`absolute bg-white border border-blue-500 rounded-sm cursor-nesw-resize z-10 ${
                     isMobile ? "w-6 h-6" : "w-2 h-2"
                   }`}
@@ -1543,7 +1547,9 @@ export default function Home() {
                   onTouchStart={(e) => handleResizeTouchStart(e, "bottomLeft")}
                 />
                 <div
-                  ref={(el) => (resizeHandleRefs.current[3] = el)}
+                  ref={(el) => {
+                    resizeHandleRefs.current[3] = el
+                  }}
                   className={`absolute bg-white border border-blue-500 rounded-sm cursor-nwse-resize z-10 ${
                     isMobile ? "w-6 h-6" : "w-2 h-2"
                   }`}
