@@ -79,7 +79,7 @@ export default function Home() {
   const resizeHandleRefs = useRef<(HTMLDivElement | null)[]>([null, null, null, null])
 
   // Add these refs after the existing refs
-  const imageContainerResizeHandleRefs = useRef<(HTMLDivElement | null)[]>([null, null, null, null])
+  // const imageContainerResizeHandleRefs = useRef<(HTMLDivElement | null)[]>([null, null, null, null])
 
   // Load preferences from local storage on initial render
   useEffect(() => {
@@ -199,7 +199,7 @@ export default function Home() {
       if (!imageContainerRef.current || !containerRef.current) return
 
       const containerRect = containerRef.current.getBoundingClientRect()
-      const imageContainerRect = imageContainerRef.current.getBoundingClientRect()
+      // const imageContainerRect = imageContainerRef.current.getBoundingClientRect()
 
       const mouseX = e.clientX - containerRect.left
       const mouseY = e.clientY - containerRect.top
@@ -209,13 +209,13 @@ export default function Home() {
       setImageResizeStartData({
         startX: mouseX,
         startY: mouseY,
-        startWidth: imageContainerRect.width,
-        startHeight: imageContainerRect.height,
+        startWidth: imageContainerSize.width,
+        startHeight: imageContainerSize.height,
         startImageX: imagePosition.x,
         startImageY: imagePosition.y,
       })
     },
-    [imagePosition.x, imagePosition.y],
+    [imagePosition.x, imagePosition.y, imageContainerSize.width, imageContainerSize.height],
   )
 
   // Update the handleMouseDown function to better handle control clicks
@@ -361,7 +361,7 @@ export default function Home() {
         let newWidth = imageContainerSize.width
         let newHeight = imageContainerSize.height
         const containerRect = containerRef.current.getBoundingClientRect()
-        const imageContainerRect = imageContainerRef.current.getBoundingClientRect()
+        // const imageContainerRect = imageContainerRef.current.getBoundingClientRect()
 
         // Calculate aspect ratio to maintain
         const aspectRatio = imageResizeStartData.startWidth / imageResizeStartData.startHeight
@@ -543,18 +543,19 @@ export default function Home() {
       }
 
       // Set initial size if already loaded
-      updateImageInfo()
+      // updateImageInfo()
 
       // Add load event for when image finishes loading
-      imageRef.current.addEventListener("load", updateImageInfo)
+      const currentImageRef = imageRef.current
+      currentImageRef.addEventListener("load", updateImageInfo)
 
       // Create a ResizeObserver to detect container size changes
       const resizeObserver = new ResizeObserver(updateImageInfo)
       resizeObserver.observe(imageContainerRef.current)
 
       return () => {
-        if (imageRef.current) {
-          imageRef.current.removeEventListener("load", updateImageInfo)
+        if (currentImageRef) {
+          currentImageRef.removeEventListener("load", updateImageInfo)
         }
         resizeObserver.disconnect()
       }
@@ -790,7 +791,7 @@ export default function Home() {
         let newWidth = imageContainerSize.width
         let newHeight = imageContainerSize.height
         const containerRect = containerRef.current.getBoundingClientRect()
-        const imageContainerRect = imageContainerRef.current.getBoundingClientRect()
+        // const imageContainerRect = imageContainerRef.current.getBoundingClientRect()
 
         // Calculate aspect ratio to maintain
         const aspectRatio = imageResizeStartData.startWidth / imageResizeStartData.startHeight
@@ -928,7 +929,7 @@ export default function Home() {
       if (!imageContainerRef.current || !containerRef.current) return
 
       const containerRect = containerRef.current.getBoundingClientRect()
-      const imageContainerRect = imageContainerRef.current.getBoundingClientRect()
+      // const imageContainerRect = imageContainerRef.current.getBoundingClientRect()
       const touch = e.touches[0]
 
       const touchX = touch.clientX - containerRect.left
@@ -939,13 +940,13 @@ export default function Home() {
       setImageResizeStartData({
         startX: touchX,
         startY: touchY,
-        startWidth: imageContainerRect.width,
-        startHeight: imageContainerRect.height,
+        startWidth: imageContainerSize.width,
+        startHeight: imageContainerSize.height,
         startImageX: imagePosition.x,
         startImageY: imagePosition.y,
       })
     },
-    [imagePosition.x, imagePosition.y],
+    [imagePosition.x, imagePosition.y, imageContainerSize.width, imageContainerSize.height],
   )
 
   // Update the handleResizeStart function to work with touch events
@@ -1121,7 +1122,7 @@ export default function Home() {
 
         try {
           // Create a named file representation for the clipboard
-          const fileName = file?.name ? `${file.name.split(".")[0]}_magnified.png` : "screenshot.png"
+          // const fileName = file?.name ? `${file.name.split(".")[0]}_magnified.png` : "screenshot.png"
 
           // For modern browsers that support the Clipboard API with ClipboardItem
           if (navigator.clipboard && navigator.clipboard.write) {
